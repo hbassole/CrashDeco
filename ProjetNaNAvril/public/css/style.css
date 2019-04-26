@@ -1,0 +1,153 @@
+.box{
+margin-top: 100px;
+background: #ffffff;
+border-radius: 5px;
+-webkit-box-shadow: 0px -1px 19px 1px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px -1px 19px 1px rgba(0,0,0,0.75);
+box-shadow: 0px -1px 19px 1px rgba(0,0,0,0.75);
+}
+.btn{
+    margin-bottom: 10px;
+}
+.navbar{
+
+	background:#fff;
+	border: none;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-bottom: 0px;
+}
+.left{
+
+	height: 500px ;
+	background: #fff;
+}
+.right{
+	height: 500px;
+	background: red;
+}
+
+
+.boxprojet{
+
+	background: white;
+	border-radius: 15px;
+	-webkit-box-shadow: 0px -1px 19px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px -1px 19px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px -1px 19px 1px rgba(0,0,0,0.75);
+	
+	
+}
+.images{
+
+	width: 100%; 
+	height: 100%; 
+	object-fit: cover;
+}
+.cadreimage{
+	height: 100%;
+	width: 50%;
+	object-fit: cover;
+}
+.boxvue{
+
+	margin: 15px;
+}
+.suivie{
+	height: 300px;
+	width: 100%;
+}
+.text{
+	height: 100%; 
+	width: 50%;
+	object-fit: cover;
+
+}
+
+    body,html{
+		height: 100%;
+	}
+
+
+	nav.sidebar, .main{
+		-webkit-transition: margin 200ms ease-out;
+	    -moz-transition: margin 200ms ease-out;
+	    -o-transition: margin 200ms ease-out;
+	    transition: margin 200ms ease-out;
+	}
+
+
+	/* .....NavBar: Icon only with coloring/layout.....*/
+
+	/*small/medium side display*/
+	@media (min-width: 768px) {
+
+		/*Allow main to be next to Nav*/
+		.main{
+			position: absolute;
+			width: calc(100% - 40px); /*keeps 100% minus nav size*/
+			margin-left: 40px;
+			float: right;
+		}
+
+		/*Center Icons*/
+		nav.sidebar a{
+			padding-right: 13px;
+
+		}
+
+		/*adds border top to first nav box */
+		nav.sidebar .navbar-nav > li:first-child{
+			border-top: 1px #e5e5e5 solid;
+		}
+
+		/*adds border to bottom nav boxes*/
+		nav.sidebar .navbar-nav > li{
+			border-bottom: 1px #e5e5e5 solid;
+		}
+		
+
+		/*allows nav box to use 100% width*/
+		nav.sidebar .container-fluid{
+			padding: 0 0px 0 0px;
+		}
+
+
+
+		/*gives sidebar width/height*/
+		nav.sidebar{
+			width: 225px;
+			height: 100%;
+			margin-left: -150px;
+			float: left;
+			z-index: 8000;
+			margin-bottom: 0px;
+		}
+
+		/*give sidebar 100% width;*/
+		nav.sidebar li {
+			width: 100%;
+		}
+
+		/* Move nav to full on mouse over*/
+		nav.sidebar:hover{
+			margin-left: 0px;
+
+		}
+	
+		
+	}
+
+	/* .....NavBar: Fully showing nav bar..... */
+
+	@media (min-width: 1330px) {
+
+		/*Allow main to be next to Nav*/
+		.main{
+			width: calc(100% - 200px); /*keeps 100% minus nav size*/
+			margin-left: 200px;
+		}
+
+	}
+
+	

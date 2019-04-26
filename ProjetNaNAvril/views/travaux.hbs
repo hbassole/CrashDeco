@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mes Suivies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="public/css/bootstrap-min.css">
+    <link rel="stylesheet" href="public/css/bootstrap.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+</head>
+<body class="bg-info">
+
+    <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a style="padding-top: 0px; font-size: 60px; font-family: 'Faster One', cursive;" class="navbar-brand" href="#"><i  style="font-size:50px; " class="fas fa-home"></i> CRASH-DECO</a>
+            </div>
+            <a href="/"><button class="btn btn-danger navbar-btn pull-right">Deconnexion</button></a>
+          </div>
+    </nav>
+
+   <nav class="navbar sidebar" role="navigation">
+    <div class="container-fluid">
+        
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        
+            <ul class="nav navbar-nav">
+                <li ><a href="/projet">Projet<span style="font-size:20px;" class="pull-right hidden-xs showopacity"><i class="fas fa-home"></i></span></a></li>
+                <li ><a href="/estimation">Mes Estimations<span style="font-size:20px;" class="pull-right hidden-xs showopacity"><i class="fas fa-wallet"></i></span></a></li>
+                <li class="active"><a href="/travaux">Suivie des travaux<span style="font-size:20px;" class="pull-right hidden-xs showopacity"><i class="fas fa-building"></i></span></a></li>                
+            </ul>
+        
+    </div>
+</nav>
+<div class="main">
+
+    {{#each results}}
+    <div class="travaux col-sm-offset-1">
+
+        <div class=" suivie img-thumbnail">
+            <div class="cadreimage col-sm-3 ">
+                <img class=" images " src="../public/images/carreau.jpg">
+            </div>
+            <div class=" text col-sm-8 ">
+                <div><h3>{{nom_suivie}}</h3>
+                      <h5 class="down">{{date_suivie}} à {{heure_suivie}}</h5>
+                </div>
+                <br>
+                <div class="images">
+                  {{text_suivie}}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    {{/each}}
+
+</div>
+    
+</body>
+</html>

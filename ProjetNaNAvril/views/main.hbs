@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="public/css/bootstrap-min.css">
+    <link rel="stylesheet" href="public/css/bootstrap.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+</head>
+<body class="bg-info">
+
+    <nav style="margin-bottom: 50px" class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a style="padding-top: 0px; font-size: 60px; font-family: 'Faster One', cursive;" class="navbar-brand" href="#"><i  style="font-size:50px; " class="fas fa-home"></i> CRASH-DECO</a>
+            </div>
+          </div>
+
+            
+    </nav>
+
+  
+<div class="container-fluid">
+  <h1 style="text-align: center;margin-bottom: 20px; color:#337ab7 "> ADMIN DASHBOARD <i class="fas fa-user-lock"></i></h1>
+  <div style="background: #fff" class="container">
+    
+    <table class="table " id="mytable">
+      <thead>
+          {{#each results}}
+          <p class="form-control"><strong>Nom du Client :</strong> {{nom_user}}</p>
+          <p class="form-control"><strong>Contact du Client :</strong> {{contact_user}}</p>
+          <p class="form-control"><strong>Lieu D'habitation :</strong>{{habitation}}</p>
+          <tr> 
+            <td><strong>TRAVAUX</strong></td>
+            <td><strong>DESIGNATION</strong></td>
+            <td><strong>PRIX UNITAIRE</strong></td>
+            <td><strong>QUANTITE</strong></td>
+            <td><strong>PRIX TOTAL</strong></td>
+            <td><strong>ACTIONS</strong></td>
+          </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>{{nom}}</td>
+            <td>{{designation}}</td>
+            <td>{{prixunitaire}}</td>
+            <td>{{quantite}}</td>
+            <td>{{prixttc}}</td>
+            <td>
+              <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-id="{{ id }}" data-nom="{{ nom }}" data-designation="{{ designation }}"data-prixunitaire="{{ prixunitaire }}"data-quantite="{{ quantite }}"data-prixttc="{{ prixttc }}"data-habitation="{{ habitation }}">modifier</a>
+              <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ id }}">Supprimer</a>
+              <a href="/suivie" class="btn btn-sm btn-success" >Suivie</a>
+            </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+	
+
+	 <!-- Edit Product Modal-->
+   <form action="/update" method="post">
+       <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modifier le Devis </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                      <input class="form-control nom" type="text" name="nom" placeholder="Nom de la prestation">
+                      <input class="form-control habitation" type="text" name="habitation" placeholder="lieu d'habitation">
+                      </div>
+            <table class="table" >
+                            <thead class="thead-dark">
+                                <tr>
+                                  <td>Designation</td>
+                                  <td>Prix Unitaire</td>
+                                  <td>Quantité</td>
+                                  <td>Prix total</td>
+                                  <td>Actions</td>
+                                </tr>
+                            </thead>
+                            <tbody id="kids">
+                                    <tr >
+                                      <td  >
+                                        <input class="form-control designation" type="text" name="designation">
+                                      </td>
+                                      <td>
+                                        <input class="form-control prixunitaire" type="text" id="pu" name="prixunitaire">
+                                      </td>
+                                      <td>
+                                        <input class="form-control quantite" type="number" id="qte" name="quantite">
+                                      </td>
+                                      <td>
+                                        <input class="form-control prixttc" type="text" name="prixttc">
+                                      </td>
+                                      <td>
+                                        <input type="button" id="add_kid()" onClick="addKid()" value="+" />
+                                      </td>
+                                    </tr>
+                            </tbody>
+                      </table>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="id" class="product_id">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+       </div>
+  </form>
+
+	 <!-- Delete Product Modal-->
+ 	  <form id="add-row-form" action="/delete" method="post">
+ 	     <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ 	        <div class="modal-dialog">
+ 	           <div class="modal-content">
+ 	               <div class="modal-header">
+									 	<h5 class="modal-title" id="myModalLabel">Supprimer le devis </h5>
+ 	                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ 	               </div>
+ 	               <div class="modal-body">
+												 <strong>Etes vous sûr de vouloir supprimer ?</strong>
+ 	               </div>
+ 	               <div class="modal-footer">
+									 		<input type="hidden" name="id" class="form-control product_id2" required>
+ 	                   	<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+ 	                  	<button type="submit" class="btn btn-success">Supprimer</button>
+ 	               </div>
+ 	      			</div>
+ 	        </div>
+ 	     </div>
+ 	 </form>
+
+<script>
+    $(document).ready(function(){
+			//showing data to modal for edit record
+      $('#mytable').on('click','.edit',function(){
+        var id = $(this).data('id');
+        var nom = $(this).data('nom');
+        var designation = $(this).data('designation');
+        var prixunitaire = $(this).data('prixunitaire');
+        var quantite = $(this).data('quantite');
+        var prixttc = $(this).data('prixttc');
+        var habitation = $(this).data('habitation');
+
+        $('#EditModal').modal('show');
+        $('.nom').val(nom);
+        $('.designation').val(designation);
+        $('.prixunitaire').val(prixunitaire);
+        $('.quantite').val(quantite);
+        $('.prixttc').val(prixttc);
+        $('.habitation').val(habitation);
+        $('.product_id').val(id);
+        
+      });
+      
+			//showing modal for delete record
+			$('#mytable').on('click','.delete',function(){
+        var id = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.product_id2').val(id);
+      });
+
+    });
+</script>
+
+</div>
+    
+</body>
+</html>
